@@ -15,14 +15,16 @@ void MyClass::setName(std::string &name) {
     MyClass::name = name;
 }
 
-std::string MyClass::getPathname() const {
-    return pathname;
-}
 
 void MyClass::setPathname(std::string &pathname) {
     MyClass::pathname = pathname;
 }
 
-std::string MyClass::getName() const {
+
+const string &MyClass::getPathname() const {
+    return pathname;
+}
+
+const string &MyClass::getName() const {
     return name;
 }

@@ -20,11 +20,12 @@ public:
 
     MyClass(string name, string pathname);
 
-    string getName() const;
+    // "const string &" permet de renvoyer une référence vers name, économisant une copie.
+    const string &getName() const;
 
     void setName(string &name);
 
-    string getPathname() const;
+    const string &getPathname() const;
 
     void setPathname(string &pathname);
 };
