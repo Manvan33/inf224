@@ -33,13 +33,6 @@ const string &Multimedia::getName() const {
     return name;
 }
 
-void Multimedia::play() const {
-    string command ="xdg-open ";
-    command += this->pathname+this->name + " &";
-    cout << "Launching system command: " << command << endl;
-    system(command.data());
-}
-
 void Multimedia::print(ostream & output) const {
     output << "Multimedia{pathname: " << this->pathname << ", name:" << this->name << "}";
 }

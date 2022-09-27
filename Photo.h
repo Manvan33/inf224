@@ -40,6 +40,13 @@ public:
                << ", longitude: " << this->longitude << "}" << endl;
     };
 
+    void play() const override {
+        string command = "firefox ";
+        command += this->getPathname() + this->getName() + " &";
+        cout << "Launching system command: " << command << endl;
+        system(command.data());
+    }
+
 };
 
 #endif //INF224_PHOTO_H

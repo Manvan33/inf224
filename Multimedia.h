@@ -31,7 +31,7 @@ public:
 
     virtual void print(std::ostream & output) const;
 
-    virtual void play() const;
+    virtual void play() const = 0;
 };
 
 

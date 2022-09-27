@@ -34,6 +34,14 @@ public:
                << this->duration << "}" << endl;
     };
 
+
+    void play() const override {
+        string command = "vlc ";
+        command += this->getPathname() + this->getName() + " &";
+        cout << "Launching system command: " << command << endl;
+        system(command.data());
+    }
+
 };
 
 
