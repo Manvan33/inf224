@@ -5,17 +5,17 @@
 #ifndef INF224_PHOTO_H
 #define INF224_PHOTO_H
 
-#include "BaseClass.h"
+#include "Multimedia.h"
 
 using namespace std;
 
-class Photo : public BaseClass {
+class Photo : public Multimedia {
 
     float latitude{};
     float longitude{};
 
 public:
-    Photo(string name, string pathname, float latitude, float longitude) : BaseClass(move(name), move(pathname)),
+    Photo(string name, string pathname, float latitude, float longitude) : Multimedia(move(name), move(pathname)),
                                                                            latitude(latitude), longitude(longitude) {};
 
     float getLatitude() const {

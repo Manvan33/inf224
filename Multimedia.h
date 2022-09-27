@@ -2,23 +2,23 @@
 // Created by ivanivan on 9/27/22.
 //
 
-#ifndef INF224_BASECLASS_H
-#define INF224_BASECLASS_H
+#ifndef INF224_MULTIMEDIA_H
+#define INF224_MULTIMEDIA_H
 
 
 #include <string>
 
 using namespace std;
 
-class BaseClass {
+class Multimedia {
 
 private:
     string pathname{};
     string name{};
 public:
-    BaseClass();
+    Multimedia();
 
-    BaseClass(string name, string pathname);
+    Multimedia(string name, string pathname);
 
     // "const string &" permet de renvoyer une référence vers name, économisant une copie.
     const string &getName() const;
@@ -35,4 +35,4 @@ public:
 };
 
 
-#endif //INF224_BASECLASS_H
+#endif //INF224_MULTIMEDIA_H

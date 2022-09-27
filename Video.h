@@ -8,15 +8,15 @@
 #include <string>
 #include <cstring>
 #include <iostream>
-#include "BaseClass.h"
+#include "Multimedia.h"
 
 using namespace std;
 
-class Video : public BaseClass {
+class Video : public Multimedia {
 private:
     unsigned int duration{};
 public:
-    Video(string name, string pathname, unsigned int duration) : BaseClass(move(name), move(pathname)) {
+    Video(string name, string pathname, unsigned int duration) : Multimedia(move(name), move(pathname)) {
         this->duration = duration;
     };
 
