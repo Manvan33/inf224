@@ -4,10 +4,15 @@
 //
 
 #include <iostream>
+#include "BaseClass.h"
+
 using namespace std;
 
 int main(int argc, const char* argv[])
 {
-    std::cout << "Hello brave new world" << std::endl;
+    BaseClass * empty = new BaseClass();
+    BaseClass * complex = new BaseClass("hello", "/tmp/hello");
+    std::cout << "Empty class name: " << empty->getName() << std::endl;
+    std::cout << "Complex class pathname: " << complex->getPathname() << std::endl;
     return 0;
 }
