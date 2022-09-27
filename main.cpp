@@ -12,16 +12,16 @@
 using namespace std;
 
 int main(int argc, const char *argv[]) {
-    BaseClass *empty = new BaseClass();
-    BaseClass *complex = new BaseClass("hello", "/tmp/hello");
+    auto *empty = new BaseClass();
+    auto *complex = new BaseClass("hello", "/tmp/hello");
     std::cout << "Empty class name: " << empty->getName() << std::endl;
     std::cout << "Complex class pathname " << complex->getPathname() << std::endl;
-    Photo *photo = new Photo("bg.png", "/tmp/", 23.2, 13.1);
+    auto *photo = new Photo("bg.png", "/tmp/", 23.2, 13.1);
     std::cout << "Photo pathname: " << photo->getPathname() << std::endl;
     photo->print(cout);
-    Video *video = new Video("video.mp4", "/tmp/", 4);
+    auto *video = new Video("video.mkv", "/tmp/", 4);
     video->print(cout);
-    photo->display();
-    video->display();
+    photo->play();
+    video->play();
     return 0;
 }

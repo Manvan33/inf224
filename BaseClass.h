@@ -27,11 +27,11 @@ public:
 
     const string &getPathname() const;
 
-    void setPathname(string &pathname);
+    void setPathname(string &new_pathname);
 
     virtual void print(std::ostream & output) const;
 
-    virtual void display() const;
+    virtual void play() const;
 };
 
 

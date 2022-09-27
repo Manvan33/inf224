@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Video : BaseClass {
+class Video : public BaseClass {
 private:
     unsigned int duration{};
 public:
@@ -20,18 +20,20 @@ public:
         this->duration = duration;
     };
 
+    unsigned int getDuration() const {
+        return duration;
+    }
+
+    void setDuration(unsigned int new_duration) {
+        Video::duration = new_duration;
+    }
+
+
     void print(ostream &output) const override {
         output << "Video{pathname: " << this->getPathname() << ", name:" << this->getName() << ", latitude:"
                << this->duration << "}" << endl;
     };
 
-    void display() const override {
-        char command[100] = "mpv ";
-        strcat(command, (this->getPathname() + this->getName()).data());
-        strcat(command, " &");
-        cout << command << endl;
-        system(command);
-    };
 };
 
 

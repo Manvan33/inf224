@@ -6,20 +6,22 @@
 #include <iostream>
 #include "BaseClass.h"
 
-BaseClass::BaseClass() {}
+using namespace std;
 
-BaseClass::BaseClass(std::string name, std::string pathname) {
+BaseClass::BaseClass() = default;
+
+BaseClass::BaseClass(string name, string pathname) {
     setName(name);
     setPathname(pathname);
 }
 
-void BaseClass::setName(std::string &name) {
-    BaseClass::name = name;
+void BaseClass::setName(string &new_name) {
+    BaseClass::name = new_name;
 }
 
 
-void BaseClass::setPathname(std::string &pathname) {
-    BaseClass::pathname = pathname;
+void BaseClass::setPathname(string &new_pathname) {
+    BaseClass::pathname = new_pathname;
 }
 
 
@@ -31,7 +33,7 @@ const string &BaseClass::getName() const {
     return name;
 }
 
-void BaseClass::display() const {
+void BaseClass::play() const {
     char command[100] = "xdg-open ";
     strcat(command, (this->pathname+this->name).data());
     strcat(command, " &");
@@ -39,7 +41,7 @@ void BaseClass::display() const {
     system(command);
 }
 
-void BaseClass::print(std::ostream & output) const {
+void BaseClass::print(ostream & output) const {
     output << "BaseClass{pathname: " << this->pathname << ", name:" << this->name << "}";
 }
 
