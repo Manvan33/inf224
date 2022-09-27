@@ -18,5 +18,8 @@ int main(int argc, const char* argv[])
     std::cout << "Complex class pathname: " << complex->getPathname() << std::endl;
     Photo * photo = new Photo("photo.png", "/tmp/photo.png", 23.2, 13.1);
     std::cout << "Photo pathname: " << photo->getPathname() << std::endl;
+    delete empty;
+    delete complex;
+    delete photo;
     return 0;
 }
