@@ -11,10 +11,10 @@
 using namespace std;
 
 class BaseClass {
-private:
-    string name{};
-    string pathname{};
 
+private:
+    string pathname{};
+    string name{};
 public:
     BaseClass();
 
@@ -28,6 +28,10 @@ public:
     const string &getPathname() const;
 
     void setPathname(string &pathname);
+
+    virtual void print(std::ostream & output) const;
+
+    virtual void display() const;
 };
 
 

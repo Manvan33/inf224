@@ -2,6 +2,8 @@
 // Created by ivanivan on 9/27/22.
 //
 
+#include <cstring>
+#include <iostream>
 #include "BaseClass.h"
 
 BaseClass::BaseClass() {}
@@ -28,3 +30,16 @@ const string &BaseClass::getPathname() const {
 const string &BaseClass::getName() const {
     return name;
 }
+
+void BaseClass::display() const {
+    char command[100] = "xdg-open ";
+    strcat(command, (this->pathname+this->name).data());
+    strcat(command, " &");
+    cout << command << endl;
+    system(command);
+}
+
+void BaseClass::print(std::ostream & output) const {
+    output << "BaseClass{pathname: " << this->pathname << ", name:" << this->name << "}";
+}
+
