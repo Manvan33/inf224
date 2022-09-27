@@ -2,23 +2,23 @@
 // Created by ivanivan on 9/27/22.
 //
 
-#ifndef INF224_MYCLASS_H
-#define INF224_MYCLASS_H
+#ifndef INF224_BASECLASS_H
+#define INF224_BASECLASS_H
 
 
 #include <string>
 
 using namespace std;
 
-class MyClass {
+class BaseClass {
 private:
     string name{};
     string pathname{};
 
 public:
-    MyClass();
+    BaseClass();
 
-    MyClass(string name, string pathname);
+    BaseClass(string name, string pathname);
 
     // "const string &" permet de renvoyer une référence vers name, économisant une copie.
     const string &getName() const;
@@ -31,4 +31,4 @@ public:
 };
 
 
-#endif //INF224_MYCLASS_H
+#endif //INF224_BASECLASS_H

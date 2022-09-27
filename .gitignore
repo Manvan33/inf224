@@ -1,4 +1,4 @@
 *.o
 .idea
-myprog
 depend-*
+output
