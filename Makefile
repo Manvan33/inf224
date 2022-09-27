@@ -14,7 +14,7 @@ PROG = output
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = BaseClass.cpp main.cpp
+SOURCES = main.cpp BaseClass.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
