@@ -37,4 +37,4 @@ forcément implémenter `play()` pour être instanciables. Le mot-clé `override
 void play() const override {...}
 ```
 
-L'étape 4 est terminée au commit [e3cea827ef74419845d92af1b35b001802ba3072](e3cea827ef74419845d92af1b35b001802ba3072).
+L'étape 4 est terminée au commit e3cea827ef74419845d92af1b35b001802ba3072.
