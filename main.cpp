@@ -7,6 +7,7 @@
 #include "Multimedia.h"
 #include "Photo.h"
 #include "Video.h"
+#include "Film.h"
 
 
 using namespace std;
@@ -33,6 +34,7 @@ int main(int argc, const char *argv[]) {
         tableau[i]->print(cout);
         tableau[i]->play();
     }
-
+    Film * film = new Film("video.webm", "./", 1, new unsigned int[2]{1, 2}, 2);
+    film->print(cout);
     return 0;
 }

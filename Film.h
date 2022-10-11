@@ -19,6 +19,7 @@ public:
     }
     Film(const string &name, const string &pathname, unsigned int duration) : Video(name, pathname, duration) {
         this->chaptersCount = 0;
+        this->chapters = nullptr;
     };
     Film(const string &name, const string &pathname, unsigned int duration, const unsigned int * chapters, unsigned int nbChapters) : Video(name, pathname, duration) {
         this->chaptersCount = nbChapters;
@@ -35,10 +36,16 @@ public:
             this->chapters[i] = chaptersList[i];
         }
     }
-    void displayChapters() const {
-        for (unsigned int i = 0; i < this->chaptersCount; i++) {
-            cout << "Chapter " << i << " : " << this->chapters[i] << endl;
+    void print(ostream &output) const override {
+        Video::print(cout);
+        output << "Film{pathname: " << getPathname() << ", name: " << getName() << ", duration: " << getDuration() << ", " << chaptersCount << " chapters: (";
+        for (unsigned int i = 0; i < chaptersCount; i++) {
+            output << chapters[i];
+            if (i < chaptersCount - 1) {
+                output << ",";
+            }
         }
+        output << ")}" << endl;
     }
 
     unsigned int getChaptersCount() const {
