@@ -36,5 +36,17 @@ int main(int argc, const char *argv[]) {
     }
     Film * film = new Film("video.webm", "./", 1, new unsigned int[2]{1, 2}, 2);
     film->print(cout);
+
+    cout << "Testons la copie profonde." << endl;
+    // Test deep copy of Film, deleting the original instance
+    Film film2;
+    film2 = *film;
+    cout << "film2, copie de film1:" << endl;
+    film2.print(cout);
+    delete film;
+    cout << "film1 supprimé, film2 est-il affecté ?" << endl;
+    film2.print(cout);
+    cout << "film2 n'est pas affecté, la copie profonde a bien fonctionné" << endl;
+
     return 0;
 }

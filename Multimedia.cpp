@@ -15,12 +15,12 @@ Multimedia::Multimedia(string name, string pathname) {
     setPathname(pathname);
 }
 
-void Multimedia::setName(string &new_name) {
+void Multimedia::setName(const string &new_name) {
     Multimedia::name = new_name;
 }
 
 
-void Multimedia::setPathname(string &new_pathname) {
+void Multimedia::setPathname(const string &new_pathname) {
     Multimedia::pathname = new_pathname;
 }
 

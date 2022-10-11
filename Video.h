@@ -16,6 +16,9 @@ class Video : public Multimedia {
 private:
     unsigned int duration{};
 public:
+    Video() : Multimedia() {
+        duration = 0;
+    }
     Video(string name, string pathname, unsigned int duration) : Multimedia(move(name), move(pathname)) {
         this->duration = duration;
     };

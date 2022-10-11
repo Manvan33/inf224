@@ -23,11 +23,11 @@ public:
     // "const string &" permet de renvoyer une référence vers name, économisant une copie.
     const string &getName() const;
 
-    void setName(string &name);
+    void setName(const string &name);
 
     const string &getPathname() const;
 
-    void setPathname(string &new_pathname);
+    void setPathname(const string &new_pathname);
 
     virtual void print(std::ostream & output) const;
 

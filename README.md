@@ -72,5 +72,30 @@ paramètres).
 **Quel est le type des éléments du tableau : le tableau doit-il contenir des objets ou des pointeurs vers ces objets ?
 Pourquoi ? Comparer à Java.**
 
-Les éléments du tableau sont des objets Photos et Videos, le tableau contient des pointeurs vers ces objets.  
- 
+Les éléments du tableau sont des objets Photos et Videos, le tableau contient des pointeurs vers ces objets.
+
+## Séance 2 : Étapes 6-10
+
+### Étape 6 : Films et tableaux
+
+> voir le fichier [Film.h](Film.h)
+
+L'étape est terminée au
+commit [5758f96bdf5d5e233ed9a411f82a92985873eafa](https://github.com/Manvan33/inf224/tree/5758f96bdf5d5e233ed9a411f82a92985873eafa)
+
+### Étape 7 : Destruction et copie d'objets
+
+> La copie d'objet peut également poser problème quand ils ont des variables d'instance qui sont des pointeurs. Quel est
+> le problème et quelles sont les solutions ? Implementez-en une.
+
+C'est le problème de la copie superficielle (_shallow copy_) : les objets copiés contiendront des pointeurs vers les
+mêmes variables d'instance que l'objet d'origine. Or, on ne veut pas que la destruction d'un objet détruise les
+variables
+d'instance d'un autre objet, il faut donc faire une copie profonde (_deep copy_). Pour cela, nous redéfinissons
+l'opérateur d'affectation de Film.
+
+```c++
+Film &operator=(const Film &from)
+```
+
+Nous testons la copie profonde dans [main.cpp](main.cpp), tout fonctionne.
