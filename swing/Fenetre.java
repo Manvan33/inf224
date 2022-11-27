@@ -3,7 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// Main window, extending JFrame
+/**
+ * Main windows class for our Swing app.
+ */
 public class Fenetre extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -48,7 +50,7 @@ public class Fenetre extends JFrame {
         this.setVisible(true);
 
     }
-
+    // Connection section, containing inputs for IP address, port and a connection button
     private JPanel connection_section() {
         JPanel connection = new JPanel();
         connection.add(new JLabel("Adresse IP :"));
@@ -81,7 +83,7 @@ public class Fenetre extends JFrame {
         });
         return connection;
     }
-
+    // Generic section, containing a search input, a search button, a play button and a result textArea
     private JComponent generic_section(String title, String search_command, String play_command) {
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createTitledBorder(title));
@@ -101,11 +103,11 @@ public class Fenetre extends JFrame {
         panel.add(new JScrollPane(text_area), BorderLayout.SOUTH);
         return panel;
     }
-
+    // Update the output line with the given text
     private void set_output_line(String text) {
         output_line.setText(text);
     }
-
+    // Listener for all the play and search buttons, sending commands to the server
     private class TcpCommand implements ActionListener {
         private String command;
         private JTextField input;
@@ -132,7 +134,7 @@ public class Fenetre extends JFrame {
             }
         }
     }
-
+    // Listener for the quit menu entry
     private static class QuitListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
