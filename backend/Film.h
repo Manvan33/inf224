@@ -14,7 +14,7 @@ private:
     unsigned int chaptersCount{};
     unsigned int *chapters;
 public:
-    ~Film() {
+    virtual ~Film() final {
         delete[] chapters;
     }
 

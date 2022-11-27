@@ -101,3 +101,14 @@ Nous testons la copie profonde dans [main.cpp](main.cpp), tout fonctionne.
 
  ### Étape 8 : Créer des groupes 
 
+On crée une classe Groupe qui hérite de la classe `list<Multimedia *>` et on marque cet héritage comme public afin de 
+pouvoir utiliser les méthodes de `list` sur un objet de type `Groupe`.
+
+> Le groupe ne doit pas détruire les objets quand il est détruit car un objet peut appartenir à plusieurs groupes (on 
+> verra ce point à la question suivante). On rappelle aussi que la liste d'objets doit en fait être une liste de 
+> pointeurs d'objets. Pourquoi ? Comparer à Java. 
+
+La liste doit être une liste de pointeurs car les objets du groupe auront des types différents : Photo, Video, Film,
+(classes filles de la classe Multimedia). Nous ne pouvons donc pas les stocker dans une liste de type `list<Multimedia>`.
+En Java, même pour une liste dont tous les éléments ont le même type, on stocke des pointeurs vers ces objets.
+

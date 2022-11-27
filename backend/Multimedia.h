@@ -29,7 +29,7 @@ public:
 
     void setPathname(const string &new_pathname);
 
-    virtual void print(std::ostream & output) const;
+    virtual void print(ostream & output) const;
 
     virtual void play() const = 0;
 };

@@ -5,6 +5,7 @@
 #ifndef INF224_PHOTO_H
 #define INF224_PHOTO_H
 
+#include <iostream>
 #include "Multimedia.h"
 
 using namespace std;
