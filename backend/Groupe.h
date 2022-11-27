@@ -8,15 +8,22 @@
 #include <list>
 #include <iostream>
 #include <utility>
+#include <memory>
 #include "Multimedia.h"
 
 using namespace std;
+typedef std::shared_ptr<Multimedia> MultimediaPtr;
 
-class Groupe : public list<Multimedia *>{
+class Groupe : public list<MultimediaPtr>{
 private:
     string name;
 
 public:
+    // Destructor
+    ~Groupe() {
+        cout << "Groupe object " << name << " destroyed" << endl;
+
+    }
     // Constructors
     Groupe() {
         name = "";
@@ -32,7 +39,6 @@ public:
         Groupe::name = newname;
     }
 
-
     void play() {
         for (auto &multimedia : *this) {
             multimedia->play();
@@ -40,7 +46,7 @@ public:
     }
 
     void print(ostream & output) const {
-        output << "Groupe{ name:" << name << ", members:" << endl;
+        output << "Groupe{name:" << name << ", members:" << endl;
         for (auto &multimedia : *this) {
             output << "\t- ";
             multimedia->print(output);

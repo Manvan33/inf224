@@ -49,15 +49,37 @@ int main(int argc, const char *argv[]) {
     cout << "film2 n'est pas affecté, la copie profonde a bien fonctionné" << endl;
     // Etape 8
     cout << endl << "### Étape 8: Groupes" << endl;
-    Groupe * groupe1 = new Groupe("groupe1");
-    groupe1 -> push_back(photo);
-    groupe1 -> push_back(video);
-    groupe1 -> print(cout);
-    Groupe * groupe2 = new Groupe("groupe2");
-    groupe2 -> push_back(photo);
+    cout << "ne fonctionne plus après l'implémentation de l'étape 9 avec les smart pointers" << endl;
+    // Groupe * groupe1 = new Groupe("groupe1");
+    // groupe1 -> push_back(photo);
+    // groupe1 -> push_back(video);
+    // groupe1 -> print(cout);
+    // Groupe * groupe2 = new Groupe("groupe2");
+    // groupe2 -> push_back(&groupe1->back());
+    // groupe2 -> print(cout);
+    // delete groupe1;
+    // cout << "groupe1 supprimé, groupe2 est-il affecté ?" << endl;
+    // groupe2->print(cout);
+    // cout << "Tout va bien :D" << endl;
+
+    // Etape 9
+    cout << endl << "### Étape 9: Smart pointers" << endl;
+    auto *groupe1 = new Groupe("groupe1");
+    MultimediaPtr smart_photo = make_shared<Photo>("image.gif", "./", 1.0, 2.0);
+    groupe1->push_back(smart_photo);
+    MultimediaPtr smart_video = make_shared<Video>("video.webm", "./", 1);
+    groupe1->push_back(smart_video);
+    auto *groupe2 = new Groupe("groupe2");
+    groupe2->push_back(smart_photo);
+    cout << "Suppression des pointeurs temporaires"<< endl;
+    smart_photo.reset();
+    smart_video.reset();
+    groupe1->print(cout);
+    groupe2->print(cout);
     delete groupe1;
     cout << "groupe1 supprimé, groupe2 est-il affecté ?" << endl;
     groupe2->print(cout);
-    cout << "Tout va bien :D" << endl;
+    delete groupe2;
+    cout << "Exiting main" << endl;
     return 0;
 }

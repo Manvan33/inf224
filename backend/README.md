@@ -99,16 +99,32 @@ Film &operator=(const Film &from)
 
 Nous testons la copie profonde dans [main.cpp](main.cpp), tout fonctionne.
 
- ### Étape 8 : Créer des groupes 
+### Étape 8 : Créer des groupes 
 
 On crée une classe Groupe qui hérite de la classe `list<Multimedia *>` et on marque cet héritage comme public afin de 
 pouvoir utiliser les méthodes de `list` sur un objet de type `Groupe`.
 
-> Le groupe ne doit pas détruire les objets quand il est détruit car un objet peut appartenir à plusieurs groupes (on 
+> Le groupe ne doit pas détruire les objets quand il est détruit, car un objet peut appartenir à plusieurs groupes (on 
 > verra ce point à la question suivante). On rappelle aussi que la liste d'objets doit en fait être une liste de 
 > pointeurs d'objets. Pourquoi ? Comparer à Java. 
 
-La liste doit être une liste de pointeurs car les objets du groupe auront des types différents : Photo, Video, Film,
+La liste doit être une liste de pointeurs, car les objets du groupe auront des types différents : Photo, Video, Film,
 (classes filles de la classe Multimedia). Nous ne pouvons donc pas les stocker dans une liste de type `list<Multimedia>`.
 En Java, même pour une liste dont tous les éléments ont le même type, on stocke des pointeurs vers ces objets.
 
+### 9e étape. Gestion automatique de la mémoire
+
+On crée un type `MultimediaPtr` défini comme un smart pointer vers un objet de type `Multimedia`. On change aussi la 
+définition de la classe Groupe, qui hérite maintenant de `list<MultimediaPtr>`.
+
+```c++
+typedef std::shared_ptr<Multimedia> MultimediaPtr;
+
+class Groupe : public list<MultimediaPtr> {...}
+```
+
+On teste la destruction automatique des objets dans [main.cpp](main.cpp). On instancie un groupe contenant smart_photo 
+et `smart_video`, et un second groupe contenant uniquement `smart_photo`. On détruit le premier groupe, le destructeur de 
+`smart_video` est bien appelé : "Multimedia object video.webm destroyed". `smart_photo` est toujours utilisé par le second 
+groupe, il n'est pas détruit. On détruit le second groupe, `smart_photo` est détruit : "Multimedia object image.gif 
+destroyed".

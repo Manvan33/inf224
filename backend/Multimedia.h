@@ -20,6 +20,8 @@ public:
 
     Multimedia(string name, string pathname);
 
+    virtual ~Multimedia();
+
     // "const string &" permet de renvoyer une référence vers name, économisant une copie.
     const string &getName() const;
 
