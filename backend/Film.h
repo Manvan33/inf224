@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Film : Video {
+class Film : public Video {
 private:
     unsigned int chaptersCount{};
     unsigned int *chapters;

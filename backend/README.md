@@ -128,3 +128,24 @@ et `smart_video`, et un second groupe contenant uniquement `smart_photo`. On dé
 `smart_video` est bien appelé : "Multimedia object video.webm destroyed". `smart_photo` est toujours utilisé par le second 
 groupe, il n'est pas détruit. On détruit le second groupe, `smart_photo` est détruit : "Multimedia object image.gif 
 destroyed".
+
+### Étape 10 : Gestion cohérente des données
+
+On écrit la classe DataMap qui utilise deux maps : une map de type `std::map<string, MultimediaPtr>` pour stocker les 
+objets et une map de type `std::map<string, GroupePtr>` pour stocker les groupes. On utilise des smart pointers comme 
+dans la question précédente.
+
+> Les méthodes précédentes permettent d'assurer la cohérence de la base de données car quand on crée un objet on 
+> l'ajoute à la table adéquate. Par contre, ce ne sera pas le cas si on crée un objet directement avec new (il
+> n'appartiendra à aucune table). Comment peut-on l'interdire, afin que seule la classe servant à manipuler les objets 
+> puisse en créer de nouveaux ?
+
+On peut interdire la création d'objets directement avec new en rendant le constructeur de la classe Multimedia privé, et 
+définir la classe DataMap comme amie de la classe Multimedia.
+
+```c++
+class Multimedia {
+    friend class DataMap;
+    ...
+}
+```

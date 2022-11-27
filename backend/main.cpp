@@ -4,6 +4,7 @@
 #include "Video.h"
 #include "Film.h"
 #include "Groupe.h"
+#include "DataMap.h"
 
 
 using namespace std;
@@ -80,6 +81,18 @@ int main(int argc, const char *argv[]) {
     cout << "groupe1 supprimé, groupe2 est-il affecté ?" << endl;
     groupe2->print(cout);
     delete groupe2;
-    cout << "Exiting main" << endl;
+    // Etape 10
+    cout << endl << "### Étape 10: Gestion cohérente des données" << endl;
+    DataMap datamap = DataMap();
+    shared_ptr<Photo> photo_object = datamap.create_photo("image.gif", "./", 1.0, 2.0);
+    shared_ptr<Video> vid_object = datamap.create_video("video.webm", "./", 1);
+    datamap.print_object(cout, "image.gif");
+    GroupePtr groupeptr = datamap.create_group("main_group");
+    groupeptr->push_back(photo_object);
+    groupeptr->push_back(vid_object);
+    datamap.print_group(cout, "main_group");
+    cout << endl << "Exiting main" << endl;
     return 0;
+
+
 }
