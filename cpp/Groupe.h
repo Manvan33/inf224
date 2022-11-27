@@ -14,7 +14,9 @@
 using namespace std;
 typedef std::shared_ptr<Multimedia> MultimediaPtr;
 
-class Groupe : public list<MultimediaPtr>{
+/// \brief Groupe class, stores Multimedia objects in a list of shared smart pointers
+/// \author Ivan Ivanov
+class Groupe : public list<MultimediaPtr> {
 private:
     string name;
 
@@ -24,10 +26,12 @@ public:
         cout << "Groupe object " << name << " destroyed" << endl;
 
     }
+
     // Constructors
     Groupe() {
         name = "";
     }
+
     Groupe(string name) : name(std::move(name)) {}
 
     // Getters
@@ -40,14 +44,14 @@ public:
     }
 
     void play() {
-        for (auto &multimedia : *this) {
+        for (auto &multimedia: *this) {
             multimedia->play();
         }
     }
 
-    void print(ostream & output) const {
+    void print(ostream &output) const {
         output << "Groupe{name:" << name << ", members:[";
-        for (auto &multimedia : *this) {
+        for (auto &multimedia: *this) {
             multimedia->print(output);
             output << ", ";
         }

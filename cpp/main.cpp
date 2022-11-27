@@ -137,22 +137,31 @@ int main(int argc, const char *argv[]) {
                       : Command::NOT_FOUND;
         cout << "Command: " << request.substr(0, request.find(' ')) << endl;
         stringstream reponse_stream = stringstream();
+        string command_args = request.substr(request.find(' ') + 1);
         switch (cmd) {
             case Command::SEARCH_GROUP:
-                datamap.print_group(reponse_stream, request.substr(request.find(' ') + 1));
+                datamap.print_group(reponse_stream, command_args);
                 response = reponse_stream.str();
                 break;
             case Command::SEARCH_OBJECT:
-                datamap.print_object(reponse_stream, request.substr(request.find(' ') + 1));
+                datamap.print_object(reponse_stream, command_args);
                 response = reponse_stream.str();
                 break;
             case Command::PLAY_OBJECT:
-                datamap.play_object(request.substr(request.find(' ') + 1));
-                response = "Playing object "+request.substr(request.find(' ') + 1);
+                if (datamap.find_object(command_args) == nullptr) {
+                    response = "NOT_FOUND";
+                } else {
+                    datamap.play_object(command_args);
+                    response = "Playing object " + command_args;
+                }
                 break;
             case Command::PLAY_GROUP:
-                datamap.play_group(request.substr(request.find(' ') + 1));
-                response = "Playing group "+request.substr(request.find(' ') + 1);
+                if (datamap.find_group(command_args) == nullptr) {
+                    response = "NOT_FOUND";
+                } else {
+                    datamap.play_group(command_args);
+                    response = "Playing group " + command_args;
+                }
                 break;
             case Command::STOP:
                 response = "stop";

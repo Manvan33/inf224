@@ -10,6 +10,10 @@
 
 using namespace std;
 
+/// \brief A class that represents a photo.
+/// \details A photo is a multimedia object that has latitude and a longitude. It can open the related image file
+///  from its pathname + name attributes
+/// \author Ivan Ivanov
 class Photo : public Multimedia {
 
     float latitude{};
@@ -41,7 +45,7 @@ public:
     };
 
     void play() const override {
-        string command = "firefox ";
+        string command = "xdg-open ";
         command += this->getPathname() + this->getName() + " &";
         cout << "Launching system command: " << command << endl;
         system(command.data());

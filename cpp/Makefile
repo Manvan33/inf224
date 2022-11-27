@@ -64,7 +64,7 @@ ${CLIENT}: depend-${CLIENT} ${CLIENT_OBJETS}
 	${CXX} -o $@ ${CXXFLAGS} ${LDFLAGS} ${CLIENT_OBJETS} ${LDLIBS}
 
 clean:
-	-@$(RM) *.o depend-${PROG} core 1>/dev/null 2>&1
+	-@$(RM) *.o tcp/*.o depend-${PROG} core 1>/dev/null 2>&1
 
 clean-all: clean
 	-@$(RM) ${PROG} 1>/dev/null 2>&1

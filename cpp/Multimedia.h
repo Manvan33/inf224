@@ -10,6 +10,9 @@
 
 using namespace std;
 
+/// \brief Multimedia class
+/// \details Multimedia is a base class for all multimedia objects.
+/// \author Ivan Ivanov
 class Multimedia {
 
 private:
@@ -31,7 +34,7 @@ public:
 
     void setPathname(const string &new_pathname);
 
-    virtual void print(ostream & output) const;
+    virtual void print(ostream &output) const;
 
     virtual void play() const = 0;
 };

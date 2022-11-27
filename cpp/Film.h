@@ -1,7 +1,3 @@
-//
-// Created by ivanivan on 10/11/22.
-//
-
 #ifndef INF224_FILM_H
 #define INF224_FILM_H
 
@@ -9,6 +5,8 @@
 
 using namespace std;
 
+/// \brief Film class, same as Video with chapters
+/// \author Ivan Ivanov
 class Film : public Video {
 private:
     unsigned int chaptersCount{};

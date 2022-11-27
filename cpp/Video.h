@@ -12,6 +12,9 @@
 
 using namespace std;
 
+
+/// \brief Video class, a Multimedia object with a duration in addition of its base attributes (name)
+/// \author Ivan Ivanov
 class Video : public Multimedia {
 private:
     unsigned int duration{};
@@ -19,6 +22,7 @@ public:
     Video() : Multimedia() {
         duration = 0;
     }
+
     Video(string name, string pathname, unsigned int duration) : Multimedia(move(name), move(pathname)) {
         this->duration = duration;
     };
@@ -39,7 +43,7 @@ public:
 
 
     void play() const override {
-        string command = "vlc ";
+        string command = "mpv ";
         command += this->getPathname() + this->getName() + " &";
         cout << "Launching system command: " << command << endl;
         system(command.data());
