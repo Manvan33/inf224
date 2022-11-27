@@ -57,16 +57,16 @@ public:
         }
     }
     void print_object(ostream &output, string name) {
-        find_object(name)->print(output);
+        if (find_object(name) != nullptr) find_object(name)->print(output);
     }
     void print_group(ostream &output, string name) {
-        find_group(name)->print(output);
+        if (find_group(name) != nullptr) find_group(name)->print(output);
     }
     void play_object(string name) {
-        find_object(name)->play();
+        if(find_object(name) != nullptr) find_object(name)->play();
     }
     void play_group(string name) {
-        find_group(name)->play();
+        if(find_group(name) != nullptr) find_group(name)->play();
     }
 };
 

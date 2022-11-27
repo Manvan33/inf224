@@ -14,7 +14,7 @@ PROG = output
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = main.cpp Multimedia.cpp
+SOURCES = main.cpp Multimedia.cpp tcp/tcpserver.cpp tcp/ccsocket.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
@@ -43,7 +43,7 @@ LDFLAGS =
 # Librairies a utiliser
 # Exemple: LDLIBS = -L/usr/local/qt/lib -lqt
 #
-LDLIBS =
+LDLIBS = -lpthread
 
 
 ##########################################
@@ -59,6 +59,9 @@ run: ${PROG}
 
 ${PROG}: depend-${PROG} ${OBJETS}
 	${CXX} -o $@ ${CXXFLAGS} ${LDFLAGS} ${OBJETS} ${LDLIBS}
+
+${CLIENT}: depend-${CLIENT} ${CLIENT_OBJETS}
+	${CXX} -o $@ ${CXXFLAGS} ${LDFLAGS} ${CLIENT_OBJETS} ${LDLIBS}
 
 clean:
 	-@$(RM) *.o depend-${PROG} core 1>/dev/null 2>&1

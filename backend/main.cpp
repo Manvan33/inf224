@@ -1,3 +1,5 @@
+#define VERSION_2
+
 #include <iostream>
 #include "Multimedia.h"
 #include "Photo.h"
@@ -6,8 +8,9 @@
 #include "Groupe.h"
 #include "DataMap.h"
 
-
 using namespace std;
+
+#ifdef VERSION_1
 
 int main(int argc, const char *argv[]) {
 //    auto *empty = new Multimedia();
@@ -94,5 +97,96 @@ int main(int argc, const char *argv[]) {
     cout << endl << "Exiting main" << endl;
     return 0;
 
-
 }
+# endif
+# ifdef VERSION_2
+
+#include <sstream>
+#include "tcp/tcpserver.h"
+
+const int PORT = 3331;
+
+enum class Command {
+    SEARCH_OBJECT,
+    SEARCH_GROUP,
+    PLAY_OBJECT,
+    PLAY_GROUP,
+    STOP,
+    NOT_FOUND
+};
+
+map<string, Command> commands_table = {
+        {"search",       Command::SEARCH_OBJECT},
+        {"search_group", Command::SEARCH_GROUP},
+        {"play",         Command::PLAY_OBJECT},
+        {"play_group",   Command::PLAY_GROUP},
+        {"stop",         Command::STOP},
+
+};
+
+int main(int argc, const char *argv[]) {
+
+    DataMap datamap = DataMap();
+
+    auto *server = new TCPServer([&](std::string const &request, std::string &response) {
+        // the request sent by the client to the server
+        std::cout << "request: " << request << std::endl;
+
+        Command cmd = commands_table.find(request.substr(0, request.find(' '))) != commands_table.end()
+                      ? commands_table[request.substr(0, request.find(' '))]
+                      : Command::NOT_FOUND;
+        cout << "Command: " << request.substr(0, request.find(' ')) << endl;
+        stringstream reponse_stream = stringstream();
+        switch (cmd) {
+            case Command::SEARCH_GROUP:
+                datamap.print_group(reponse_stream, request.substr(request.find(' ') + 1));
+                break;
+            case Command::SEARCH_OBJECT:
+                datamap.print_object(reponse_stream, request.substr(request.find(' ') + 1));
+                break;
+            case Command::PLAY_OBJECT:
+                datamap.play_object(request.substr(request.find(' ') + 1));
+                break;
+            case Command::PLAY_GROUP:
+                datamap.play_group(request.substr(request.find(' ') + 1));
+                break;
+            case Command::STOP:
+                response = "stop";
+                return false;
+                break;
+            case Command::NOT_FOUND:
+                response = "Command not found";
+                return true;
+                break;
+        }
+        response = reponse_stream.str();
+        // return false would close the connection with the client
+        return true;
+    });
+
+    // Librairie multimédia
+    shared_ptr<Photo> photo_object = datamap.create_photo("image.gif", "./", 1.0, 2.0);
+    shared_ptr<Video> vid_object = datamap.create_video("video.webm", "./", 1);
+    GroupePtr groupe_photos = datamap.create_group("photos");
+    groupe_photos->push_back(photo_object);
+    GroupePtr groupe_videos = datamap.create_group("videos");
+    groupe_videos->push_back(vid_object);
+    GroupePtr groupe_main = datamap.create_group("main_group");
+    groupe_main->push_back(photo_object);
+    groupe_main->push_back(vid_object);
+
+
+    // lance la boucle infinie du serveur
+    std::cout << "Starting Server on port " << PORT << std::endl;
+    int status = server->run(PORT);
+
+    // en cas d'erreur
+    if (status < 0) {
+        std::cerr << "Could not start Server on port " << PORT << ", status: " << status << std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+
+# endif
