@@ -33,8 +33,8 @@ public:
 
 
     void print(ostream &output) const override {
-        output << "Video{pathname: " << this->getPathname() << ", name:" << this->getName() << ", latitude:"
-               << this->duration << "}" << endl;
+        output << "Video{pathname:" << this->getPathname() << ", name:" << this->getName() << ", duration:"
+               << this->getDuration() << "}";
     };
 
 

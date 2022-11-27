@@ -58,9 +58,11 @@ public:
     }
     void print_object(ostream &output, string name) {
         if (find_object(name) != nullptr) find_object(name)->print(output);
+        else output << "NOT_FOUND";
     }
     void print_group(ostream &output, string name) {
         if (find_group(name) != nullptr) find_group(name)->print(output);
+        else output << "NOT_FOUND";
     }
     void play_object(string name) {
         if(find_object(name) != nullptr) find_object(name)->play();

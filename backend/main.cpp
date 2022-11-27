@@ -140,15 +140,19 @@ int main(int argc, const char *argv[]) {
         switch (cmd) {
             case Command::SEARCH_GROUP:
                 datamap.print_group(reponse_stream, request.substr(request.find(' ') + 1));
+                response = reponse_stream.str();
                 break;
             case Command::SEARCH_OBJECT:
                 datamap.print_object(reponse_stream, request.substr(request.find(' ') + 1));
+                response = reponse_stream.str();
                 break;
             case Command::PLAY_OBJECT:
                 datamap.play_object(request.substr(request.find(' ') + 1));
+                response = "Playing object "+request.substr(request.find(' ') + 1);
                 break;
             case Command::PLAY_GROUP:
                 datamap.play_group(request.substr(request.find(' ') + 1));
+                response = "Playing group "+request.substr(request.find(' ') + 1);
                 break;
             case Command::STOP:
                 response = "stop";
@@ -159,7 +163,8 @@ int main(int argc, const char *argv[]) {
                 return true;
                 break;
         }
-        response = reponse_stream.str();
+        cout << response << endl;
+        cout << endl;
         // return false would close the connection with the client
         return true;
     });

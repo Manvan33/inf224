@@ -46,12 +46,12 @@ public:
     }
 
     void print(ostream & output) const {
-        output << "Groupe{name:" << name << ", members:" << endl;
+        output << "Groupe{name:" << name << ", members:[";
         for (auto &multimedia : *this) {
-            output << "\t- ";
             multimedia->print(output);
+            output << ", ";
         }
-        output << "}" << endl;
+        output << "]}";
     }
 };
 

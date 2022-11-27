@@ -36,9 +36,8 @@ public:
     }
 
     void print(ostream &output) const override {
-        output << "Photo{pathname: " << this->getPathname() << ", name:" << this->getName() << ", latitude:"
-               << this->latitude
-               << ", longitude: " << this->longitude << "}" << endl;
+        output << "Photo{pathname:" << this->getPathname() << ", name:" << this->getName() << ", latitude:"
+               << this->latitude << ", longitude: " << this->longitude << "}";
     };
 
     void play() const override {

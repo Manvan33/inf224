@@ -34,7 +34,7 @@ const string &Multimedia::getName() const {
 }
 
 void Multimedia::print(ostream & output) const {
-    output << "Multimedia{pathname: " << this->pathname << ", name:" << this->name << "}";
+    output << "Multimedia{pathname:" << this->pathname << ", name:" << this->name << "}";
 }
 
 Multimedia::~Multimedia() {

@@ -48,7 +48,7 @@ public:
     }
 
     void print(ostream &output) const override {
-        output << "Film{pathname: " << getPathname() << ", name: " << getName() << ", duration: " << getDuration()
+        output << "Film{pathname:" << getPathname() << ", name:" << getName() << ", duration:" << getDuration()
                << ", " << chaptersCount << " chapters: (";
         for (unsigned int i = 0; i < chaptersCount; i++) {
             output << chapters[i];
@@ -56,7 +56,7 @@ public:
                 output << ",";
             }
         }
-        output << ")}" << endl;
+        output << ")}";
     }
 
     unsigned int getChaptersCount() const {
